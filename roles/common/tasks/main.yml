@@ -1,0 +1,18 @@
+---
+- name: os upgrade
+  apt: upgrade=dist
+
+- name: common pkg install
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - wget
+    - git
+    - curl
+    - unzip
+    - build-essential
+    - libcurl4-openssl-dev
+    - python-dev
+    - python-pip
+
+- name: timezone setup
+  shell: echo "Asia/Tokyo" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata

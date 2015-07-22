@@ -1,0 +1,43 @@
+if has('vim_starting')
+  set nocompatible
+  if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neocomplete.vim'
+
+NeoBundle 'moll/vim-node'
+NeoBundle 'mattn/jscomplete-vim'
+NeoBundle 'myhere/vim-nodejs-complete'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'heavenshell/vim-jsdoc'
+NeoBundle 'guileen/vim-node-dict'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'Townk/vim-autoclose'
+call neobundle#end()
+
+filetype plugin indent on
+NeoBundleCheck
+
+autocmd FileType javascript :setl omnifunc=jscomplete#CompleteJS
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+
+let g:syntastic_javascript_checker = "jshint"
+
+au FileType javascript set dictionary+=$HOME/.vim/bundle/vim-node-dict/dict/node.dict
+
+set t_Co=256
+
+colorscheme hybrid
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+autocmd FileType coffee,javascript,jade setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab

@@ -1,0 +1,6 @@
+3tiers/node/src/public/uploads
+3tiers/node/src/node_modules
+3tiers/node/src/bower_components
+3tiers/node/src/npm-debug.log
+.vagrant
+.DS_Store

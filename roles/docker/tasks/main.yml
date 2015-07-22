@@ -1,0 +1,12 @@
+---
+- name: docker install
+  shell: curl -sSL https://get.docker.io/ubuntu/ | sudo sh
+
+- name: sysv-rc-conf install
+  apt: name=sysv-rc-conf state=latest update_cache=yes
+
+- name: docker on
+  shell: sysv-rc-conf docker on
+
+- name: docker service
+  service: name=docker state=started

@@ -1,0 +1,23 @@
+nginx:
+  build: nginx
+  ports:
+    - "80:80"
+  volumes:
+    - "nginx/contents:/contents"
+  links:
+    - "node"
+
+node:
+  build: node
+  ports:
+    - "3000:3000"
+  volumes:
+    - "node/src:/src"
+  links:
+    - "mongodb"
+
+mongodb:
+  build: mongodb
+  ports:
+    - "27071:27071"
+    - "28071:28071"

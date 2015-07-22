@@ -1,0 +1,12 @@
+extends layout
+
+block content
+   .container(style='padding:20px 0')
+      .col-sm-3
+        .panel.panel-default.text-center
+          .panel-heading
+            p
+              img(src="data:image/#{imageType};base64,#{image64}")
+          ul.list-group
+            li.list-group-item #{username}
+            li.list-group-item #{original}
